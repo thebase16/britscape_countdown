@@ -15,8 +15,29 @@ function updateCountdown() {
     const seconds = Math.floor(diff / 1000) % 60;
 
     document.getElementById("countdown").textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        `♡ ${days}d ${hours}h ${minutes}m ${seconds}s ♡`;
 }
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+
+const sparkles = ["✨", "⭐", "★", "✦", "♡"];
+
+document.addEventListener("mousemove", (e) => {
+    const sparkle = document.createElement("div");
+
+    sparkle.classList.add("sparkle");
+
+    sparkle.innerHTML =
+        sparkles[Math.floor(Math.random() * sparkles.length)];
+
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => {
+        sparkle.remove();
+    }, 1000);
+});
